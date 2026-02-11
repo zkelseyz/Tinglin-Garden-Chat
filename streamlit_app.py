@@ -2,19 +2,18 @@ import streamlit as st
 from openai import OpenAI
 
 # Show title and description.
-st.title("💬 Chatbot")
+st.title("🌳 亭林园游览推荐")
 st.write(
-    "This is a simple chatbot that uses OpenAI's GPT-3.5 model to generate responses. "
-    "To use this app, you need to provide an OpenAI API key, which you can get [here](https://platform.openai.com/account/api-keys). "
-    "You can also learn how to build this app step by step by [following our tutorial](https://docs.streamlit.io/develop/tutorials/llms/build-conversational-apps)."
+    "欢迎使用亭林园游览推荐系统！这个聊天助手会根据您的需求提供亭林园的游览建议。"
+    "您可以询问关于亭林园的历史、景点信息或推荐的游览路线等。"
+    "要使用此应用，您需要提供 OpenAI API 密钥，您可以在 [这里](https://platform.openai.com/account/api-keys) 获取。"
+    "您还可以通过 [这个教程](https://docs.streamlit.io/develop/tutorials/llms/build-conversational-apps) 学习如何构建此应用。"
 )
 
 # Ask user for their OpenAI API key via `st.text_input`.
-# Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
-# via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
 openai_api_key = st.text_input("OpenAI API Key", type="password")
 if not openai_api_key:
-    st.info("Please add your OpenAI API key to continue.", icon="🗝️")
+    st.info("请输入您的 OpenAI API 密钥以继续使用。", icon="🗝️")
 else:
 
     # Create an OpenAI client.
@@ -32,7 +31,7 @@ else:
 
     # Create a chat input field to allow the user to enter a message. This will display
     # automatically at the bottom of the page.
-    if prompt := st.chat_input("What is up?"):
+    if prompt := st.chat_input("您想了解亭林园的哪些信息？"):
 
         # Store and display the current prompt.
         st.session_state.messages.append({"role": "user", "content": prompt})
